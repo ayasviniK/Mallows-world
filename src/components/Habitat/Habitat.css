@@ -1,0 +1,568 @@
+.habitat-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  max-width: 960px;
+  max-height: 680px;
+  margin: 0 auto;
+  border: 4px solid var(--outline);
+  border-radius: 24px;
+  background: var(--room-wall);
+  box-shadow: 
+    0 8px 0 var(--outline),
+    inset 0 0 80px rgba(15, 8, 22, 0.45);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  isolation: isolate;
+}
+
+/* Ambient Day/Night Lighting Overlay */
+.ambient-glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at 50% 25%, rgba(255, 230, 200, 0.12) 0%, transparent 70%);
+  z-index: 1;
+}
+
+/* Scenery Layer */
+.scenery-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Celestial Window */
+.scenery-window {
+  position: absolute;
+  top: 6%;
+  left: 8%;
+  width: 140px;
+  height: 110px;
+  background: linear-gradient(180deg, #423063 0%, #694a86 60%, #90679c 100%);
+  border: 4px solid var(--outline);
+  border-radius: 60px 60px 10px 10px;
+  box-shadow: 
+    inset 0 0 16px rgba(15, 8, 22, 0.6),
+    0 4px 0 var(--outline);
+  overflow: hidden;
+}
+
+.window-frame-cross-v {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 3.5px;
+  background: var(--outline);
+  transform: translateX(-50%);
+}
+
+.window-frame-cross-h {
+  position: absolute;
+  top: 55%;
+  left: 0;
+  right: 0;
+  height: 3.5px;
+  background: var(--outline);
+}
+
+.window-moon {
+  position: absolute;
+  top: 12px;
+  right: 18px;
+  font-size: 26px;
+  color: var(--butter-300);
+  filter: drop-shadow(0 0 6px rgba(255, 216, 107, 0.8));
+}
+
+.window-cloud {
+  position: absolute;
+  bottom: 14px;
+  left: 10px;
+  width: 48px;
+  height: 16px;
+  background: rgba(255, 245, 255, 0.45);
+  border-radius: 12px;
+  animation: cloud-drift 8s ease-in-out infinite;
+}
+
+.window-cloud::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: 10px;
+  width: 20px;
+  height: 20px;
+  background: inherit;
+  border-radius: 50%;
+}
+
+.window-star {
+  position: absolute;
+  color: var(--cream-100);
+  font-size: 11px;
+  animation: star-twinkle 2.5s ease-in-out infinite;
+}
+
+.window-star.star-1 { top: 22px; left: 24px; animation-delay: 0.3s; }
+.window-star.star-2 { top: 38px; left: 52px; font-size: 8px; animation-delay: 1.1s; }
+
+/* Fairy Lights across the top */
+.fairy-lights {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 26px;
+  display: flex;
+  justify-content: space-around;
+  padding: 0 40px;
+}
+
+.fairy-wire {
+  position: absolute;
+  top: 6px;
+  left: 5%;
+  right: 5%;
+  height: 8px;
+  border-top: 2px solid rgba(50, 30, 60, 0.6);
+  border-radius: 50%;
+}
+
+.fairy-bulb {
+  position: relative;
+  width: 9px;
+  height: 12px;
+  border-radius: 50%;
+  border: 1.5px solid var(--outline);
+  box-shadow: 0 0 8px currentColor;
+  margin-top: 5px;
+}
+
+.bulb-butter { background: var(--butter-300); color: var(--butter-300); }
+.bulb-strawberry { background: var(--strawberry-300); color: var(--strawberry-300); }
+.bulb-mint { background: var(--mint-300); color: var(--mint-300); }
+.bulb-lavender { background: var(--lavender-300); color: var(--lavender-300); }
+
+/* Wall Shelf & Succulent Plant */
+.scenery-shelf {
+  position: absolute;
+  top: 14%;
+  right: 8%;
+  width: 125px;
+  height: 10px;
+  background: #9d6852;
+  border: 3px solid var(--outline);
+  border-radius: 4px;
+  box-shadow: 0 3px 0 var(--outline);
+}
+
+.shelf-plant {
+  position: absolute;
+  bottom: 8px;
+  left: 18px;
+  width: 24px;
+  height: 26px;
+}
+
+.plant-pot {
+  position: absolute;
+  bottom: 0;
+  width: 24px;
+  height: 16px;
+  background: var(--butter-300);
+  border: 2.5px solid var(--outline);
+  border-radius: 2px 2px 6px 6px;
+}
+
+.plant-leaf {
+  position: absolute;
+  bottom: 12px;
+  width: 10px;
+  height: 16px;
+  background: var(--mint-300);
+  border: 2px solid var(--outline);
+  border-radius: 10px 10px 0 0;
+}
+
+.leaf-1 { left: 2px; transform: rotate(-25deg); }
+.leaf-2 { left: 7px; height: 19px; }
+.leaf-3 { left: 12px; transform: rotate(25deg); }
+
+.shelf-jar {
+  position: absolute;
+  bottom: 8px;
+  right: 18px;
+  width: 18px;
+  height: 22px;
+  background: rgba(220, 240, 255, 0.45);
+  border: 2.5px solid var(--outline);
+  border-radius: 4px;
+  display: grid;
+  place-items: center;
+  font-size: 10px;
+  color: var(--butter-300);
+}
+
+/* Wall Note */
+.wall-note {
+  position: absolute;
+  top: 26%;
+  right: 12%;
+  background: var(--cream-100);
+  color: var(--outline);
+  border: 2.5px solid var(--outline);
+  border-radius: 8px;
+  padding: 5px 8px;
+  font-family: var(--font-title);
+  font-size: 10px;
+  font-weight: 600;
+  box-shadow: 2px 2px 0 var(--outline);
+  transform: rotate(3deg);
+  pointer-events: auto;
+}
+
+/* Floor & Rug Area */
+.scenery-floor {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 42%;
+  background: var(--room-floor);
+  border-top: 4px solid var(--outline);
+  box-shadow: inset 0 8px 0 var(--room-floor-highlight);
+}
+
+.floor-plank {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(50, 25, 45, 0.2);
+}
+
+.plank-1 { top: 33%; }
+.plank-2 { top: 66%; }
+
+/* Scalloped Plush Rug */
+.cozy-rug {
+  position: absolute;
+  bottom: 12%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 320px;
+  height: 120px;
+  background: var(--rug-base);
+  border: 4px solid var(--outline);
+  border-radius: 50%;
+  box-shadow: 
+    inset 0 0 0 6px var(--rug-border),
+    0 5px 0 rgba(34, 20, 40, 0.28);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0 40px;
+}
+
+.rug-star {
+  color: var(--butter-200);
+  font-size: 16px;
+  opacity: 0.9;
+}
+
+/* Cozy Props */
+.food-bowl-prop {
+  position: absolute;
+  bottom: 14%;
+  right: 14%;
+  width: 52px;
+  height: 24px;
+  background: var(--butter-300);
+  border: 3px solid var(--outline);
+  border-radius: 4px 4px 18px 18px;
+  box-shadow: 0 3px 0 var(--outline);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--strawberry-400);
+  font-size: 14px;
+}
+
+.bowl-steam {
+  position: absolute;
+  top: -12px;
+  font-size: 12px;
+  animation: steam-puff 2s ease-in-out infinite;
+}
+
+.toy-star-prop {
+  position: absolute;
+  bottom: 16%;
+  left: 14%;
+  width: 30px;
+  height: 30px;
+  background: var(--sky-300);
+  border: 3px solid var(--outline);
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  color: var(--outline);
+  font-size: 16px;
+  box-shadow: 0 3px 0 var(--outline);
+  transform: rotate(-12deg);
+}
+
+/* Condition Chips Flanking */
+.condition-ring {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.condition-pill {
+  position: absolute;
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 248, 239, 0.95);
+  color: var(--outline);
+  border: 2.5px solid var(--outline);
+  border-radius: 16px;
+  padding: 6px 10px;
+  box-shadow: 0 3px 0 var(--outline);
+  font-family: var(--font-title);
+  cursor: pointer;
+  transition: transform 0.16s ease, box-shadow 0.16s ease;
+}
+
+.condition-pill:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 5px 0 var(--outline);
+}
+
+.condition-pill:active {
+  transform: translateY(1px);
+  box-shadow: 0 1px 0 var(--outline);
+}
+
+.pill-icon-wrap {
+  width: 24px;
+  height: 24px;
+  border-radius: 8px;
+  border: 2px solid var(--outline);
+  display: grid;
+  place-items: center;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.pill-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.pill-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 6px;
+}
+
+.pill-label {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--plum-700);
+}
+
+.pill-value {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--outline);
+}
+
+.pill-progress-bar {
+  width: 44px;
+  height: 5px;
+  background: #eedfd2;
+  border-radius: 3px;
+  overflow: hidden;
+  border: 1px solid var(--outline);
+}
+
+.pill-progress-fill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+/* Placements */
+.pill-hunger { top: 18%; left: 4%; }
+.pill-hunger .pill-icon-wrap { background: var(--strawberry-300); color: #fff; }
+.pill-hunger .pill-progress-fill { background: var(--strawberry-400); }
+
+.pill-energy { top: 18%; right: 4%; }
+.pill-energy .pill-icon-wrap { background: var(--sky-300); color: var(--outline); }
+.pill-energy .pill-progress-fill { background: var(--sky-400); }
+
+.pill-affection { bottom: 26%; left: 4%; }
+.pill-affection .pill-icon-wrap { background: var(--butter-300); color: var(--outline); }
+.pill-affection .pill-progress-fill { background: var(--butter-400); }
+
+/* Mood Badge Top Center */
+.pill-mood {
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--cream-100);
+  border: 2.5px solid var(--outline);
+  border-radius: 20px;
+  padding: 5px 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pill-mood:hover {
+  transform: translateX(-50%) translateY(-2px) scale(1.03);
+}
+
+.mood-badge-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid var(--outline);
+}
+
+.mood-badge-text {
+  font-family: var(--font-title);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--outline);
+}
+
+/* Thought Bubble */
+.thought-bubble-container {
+  position: absolute;
+  top: 24%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  max-width: 290px;
+  width: 86%;
+  animation: bubble-pop-in 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  cursor: pointer;
+}
+
+.thought-bubble-card {
+  position: relative;
+  background: var(--cream-50);
+  color: var(--outline);
+  border: 3px solid var(--outline);
+  border-radius: 16px;
+  padding: 9px 14px;
+  box-shadow: 0 4px 0 var(--outline);
+  font-family: var(--font-body);
+  font-size: 12.5px;
+  font-weight: 600;
+  line-height: 1.35;
+  text-align: center;
+  transition: transform 0.15s ease;
+}
+
+.thought-bubble-card:hover {
+  transform: scale(1.02);
+}
+
+.thought-bubble-tail {
+  position: absolute;
+  bottom: -9px;
+  left: 50%;
+  width: 14px;
+  height: 14px;
+  background: var(--cream-50);
+  border-right: 3px solid var(--outline);
+  border-bottom: 3px solid var(--outline);
+  transform: translateX(-50%) rotate(45deg);
+}
+
+/* Creature Placement inside Habitat */
+.habitat-creature-zone {
+  position: absolute;
+  bottom: 12%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 6;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 650px) {
+  .habitat-container {
+    border-radius: 16px;
+    max-height: 100%;
+  }
+
+  .scenery-window {
+    width: 105px;
+    height: 85px;
+    top: 5%;
+    left: 4%;
+  }
+
+  .scenery-shelf {
+    width: 95px;
+    top: 10%;
+    right: 4%;
+  }
+
+  .cozy-rug {
+    width: 260px;
+    height: 95px;
+    bottom: 10%;
+  }
+
+  .food-bowl-prop {
+    right: 5%;
+    bottom: 10%;
+    transform: scale(0.85);
+  }
+
+  .toy-star-prop {
+    left: 5%;
+    bottom: 11%;
+    transform: scale(0.85);
+  }
+
+  .condition-pill {
+    padding: 4px 7px;
+    border-radius: 12px;
+  }
+
+  .pill-hunger { top: 15%; left: 2%; }
+  .pill-energy { top: 15%; right: 2%; }
+  .pill-affection { bottom: 22%; left: 2%; }
+  .pill-mood { top: 7%; padding: 4px 10px; }
+
+  .pill-progress-bar {
+    width: 30px;
+  }
+
+  .thought-bubble-container {
+    top: 22%;
+    max-width: 240px;
+  }
+
+  .thought-bubble-card {
+    font-size: 11px;
+    padding: 7px 11px;
+  }
+}

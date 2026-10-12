@@ -1,0 +1,186 @@
+.toy-dock-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  max-width: 960px;
+  margin: 10px auto 0;
+  padding: 0 4px;
+}
+
+.dock-card-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--plum-800);
+  color: var(--cream-100);
+  border: 2.5px solid var(--outline);
+  border-radius: 14px;
+  padding: 6px 12px;
+  box-shadow: 0 4px 0 var(--outline);
+  cursor: pointer;
+  font-family: var(--font-title);
+  transition: transform 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+}
+
+.dock-card-btn:hover {
+  transform: translateY(-2px);
+  background: var(--plum-700);
+  box-shadow: 0 6px 0 var(--outline);
+}
+
+.dock-card-btn:active {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 var(--outline);
+}
+
+.dock-card-btn.active-state {
+  background: var(--plum-600);
+  border-color: var(--butter-300);
+}
+
+.dock-art-box {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: 2px solid var(--outline);
+  display: grid;
+  place-items: center;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.dock-pet .dock-art-box {
+  background: var(--strawberry-300);
+  color: #fff;
+}
+
+.dock-rest .dock-art-box {
+  background: var(--sky-300);
+  color: var(--outline);
+}
+
+.dock-tease .dock-art-box {
+  background: var(--butter-300);
+  color: var(--outline);
+}
+
+.dock-text {
+  text-align: left;
+}
+
+.dock-text b {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  line-height: 1.1;
+}
+
+.dock-text small {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 9px;
+  font-weight: 600;
+  color: var(--cream-dim);
+  margin-top: 1px;
+}
+
+/* Divider */
+.dock-separator {
+  width: 2px;
+  height: 34px;
+  background: rgba(255, 240, 255, 0.2);
+  margin: 0 4px;
+}
+
+/* Secondary Drawer Icon Buttons */
+.dock-icon-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 48px;
+  height: 48px;
+  background: var(--plum-850);
+  color: var(--cream-100);
+  border: 2.5px solid var(--outline);
+  border-radius: 12px;
+  padding: 4px;
+  box-shadow: 0 3px 0 var(--outline);
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+}
+
+.dock-icon-btn:hover {
+  transform: translateY(-2px);
+  background: var(--plum-700);
+  box-shadow: 0 5px 0 var(--outline);
+}
+
+.dock-icon-btn:active {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 var(--outline);
+}
+
+.dock-icon-symbol {
+  font-size: 16px;
+  line-height: 1;
+}
+
+.dock-icon-label {
+  font-family: var(--font-title);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--lavender-200);
+  margin-top: 3px;
+}
+
+@media (max-width: 650px) {
+  .toy-dock-container {
+    gap: 4px;
+    margin-top: 6px;
+  }
+
+  .dock-card-btn {
+    padding: 4px 6px;
+    gap: 5px;
+    border-radius: 10px;
+    flex: 1;
+  }
+
+  .dock-art-box {
+    width: 26px;
+    height: 26px;
+    font-size: 13px;
+  }
+
+  .dock-text b {
+    font-size: 9px;
+  }
+
+  .dock-text small {
+    display: none;
+  }
+
+  .dock-icon-btn {
+    min-width: 38px;
+    height: 42px;
+    border-radius: 10px;
+  }
+
+  .dock-icon-symbol {
+    font-size: 14px;
+  }
+
+  .dock-icon-label {
+    font-size: 7px;
+  }
+
+  .dock-separator {
+    height: 28px;
+    margin: 0 2px;
+  }
+}

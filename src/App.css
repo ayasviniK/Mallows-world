@@ -1,0 +1,60 @@
+.app-viewport {
+  position: relative;
+  width: 100vw;
+  height: 100dvh;
+  min-height: 560px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10px 16px 8px;
+  background: radial-gradient(circle at 50% 10%, #362248 0%, #261733 55%, #1c1125 100%);
+  overflow: hidden;
+}
+
+/* Ambient Floating Dust Motes */
+.ambient-dust {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image: 
+    radial-gradient(2px 2px at 20px 30px, rgba(255, 235, 210, 0.25), transparent),
+    radial-gradient(2px 2px at 90px 140px, rgba(255, 200, 225, 0.2), transparent),
+    radial-gradient(1.5px 1.5px at 210px 80px, rgba(200, 230, 255, 0.25), transparent);
+  background-size: 250px 250px;
+  opacity: 0.7;
+}
+
+.main-stage-wrapper {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 0;
+  width: 100%;
+}
+
+/* Subtitle and footer */
+.toy-footer-status {
+  text-align: center;
+  font-family: var(--font-body);
+  font-size: 10.5px;
+  color: var(--cream-dim);
+  opacity: 0.75;
+  padding-top: 4px;
+}
+
+.toy-footer-status span {
+  color: var(--butter-300);
+}
+
+@media (max-width: 650px) {
+  .app-viewport {
+    padding: 6px 8px 4px;
+  }
+
+  .toy-footer-status {
+    font-size: 9px;
+  }
+}
